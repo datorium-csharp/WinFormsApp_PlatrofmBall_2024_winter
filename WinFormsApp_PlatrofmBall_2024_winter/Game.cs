@@ -1,11 +1,11 @@
+using System;
+
 namespace WinFormsApp_PlatrofmBall_2024_winter
 {
     public partial class Game : Form
     {
         private System.Windows.Forms.Timer mainTimer = null;
-        private int horVelocity = 2;
-        private int verVelocity = 2;
-
+        private Random rand = new Random();
         private List<Ball> allBalls = new List<Ball>();
 
         public Game()
@@ -29,11 +29,20 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
             //Ball.Top = 190;
             //Ball.BackColor = Color.Red;
 
-            var newBall = new Ball();
-            newBall.Left = 190;
-            newBall.Top = 190;
-            allBalls.Add(newBall);
-            this.Controls.Add(newBall);
+            for(int i = 0; i < 20; i++)
+            {
+                var newBall = new Ball();
+                newBall.Left = 190;
+                newBall.Top = 190;
+
+                newBall.horVelocity = rand.Next(1, 10);
+                newBall.verVelocity = rand.Next(1, 10);
+
+                allBalls.Add(newBall);
+                this.Controls.Add(newBall);
+            }
+            
+            
         }
 
         // Collision detection
