@@ -29,7 +29,12 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
             //Ball.Top = 190;
             //Ball.BackColor = Color.Red;
 
-            for(int i = 0; i < 20; i++)
+            SpawnBalls(10);
+        }
+
+        public void SpawnBalls(int number)
+        {
+            for (int i = 0; i < number; i++)
             {
                 var newBall = new Ball();
                 newBall.Left = 190;
@@ -41,8 +46,6 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
                 allBalls.Add(newBall);
                 this.Controls.Add(newBall);
             }
-            
-            
         }
 
         // Collision detection
