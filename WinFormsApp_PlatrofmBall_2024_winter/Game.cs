@@ -6,6 +6,8 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
         private int horVelocity = 2;
         private int verVelocity = 2;
 
+        private List<Ball> allBalls = new List<Ball>();
+
         public Game()
         {
             InitializeComponent();
@@ -15,16 +17,23 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
 
         public void InitializeGame()
         {
+            this.DoubleBuffered = true;
             this.BackColor = Color.Black;
             this.Width = 400;
             this.Height = 400;
             this.Text = "Bouncing ball";
 
-            Ball.Width = 20;
-            Ball.Height = 20;
-            Ball.Left = 190;
-            Ball.Top = 190;
-            Ball.BackColor = Color.Red;
+            //Ball.Width = 20;
+            //Ball.Height = 20;
+            //Ball.Left = 190;
+            //Ball.Top = 190;
+            //Ball.BackColor = Color.Red;
+
+            var newBall = new Ball();
+            newBall.Left = 190;
+            newBall.Top = 190;
+            allBalls.Add(newBall);
+            this.Controls.Add(newBall);
         }
 
         // Collision detection
@@ -41,8 +50,28 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
 
         private void MainTimer_Tick(object sender, EventArgs e)
         {
-            Ball.Left += horVelocity;
-            Ball.Top += verVelocity;
+            foreach(var ball in allBalls)
+            {
+                ball.Left += ball.horVelocity;
+                ball.Top += ball.verVelocity;
+            }
+            BallBorderCollision();
+        }
+
+        private void BallBorderCollision()
+        {
+            foreach(var ball in allBalls)
+            {
+                if (ball.Left <= 0 || ball.Left + ball.Width >= ClientRectangle.Width)
+                {
+                    ball.horVelocity *= -1;
+                }
+                else if (ball.Top <= 0 || ball.Top + ball.Height >= ClientRectangle.Height)
+                {
+                    ball.verVelocity *= -1;
+                }
+            }           
+          
         }
 
     }
