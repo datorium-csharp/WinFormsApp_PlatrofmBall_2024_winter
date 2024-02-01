@@ -19,8 +19,8 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
         {
             this.DoubleBuffered = true;
             this.BackColor = Color.Black;
-            this.Width = 400;
-            this.Height = 400;
+            this.Width = 800;
+            this.Height = 800;
             this.Text = "Bouncing ball";
 
             //Ball.Width = 20;
@@ -29,7 +29,7 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
             //Ball.Top = 190;
             //Ball.BackColor = Color.Red;
 
-            SpawnBalls(10);
+            SpawnBalls(3);
         }
 
         public void SpawnBalls(int number)
@@ -37,8 +37,8 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
             for (int i = 0; i < number; i++)
             {
                 var newBall = new Ball();
-                newBall.Left = 190;
-                newBall.Top = 190;
+                newBall.Left = rand.Next(0, 780);
+                newBall.Top = rand.Next(0, 780); 
 
                 newBall.horVelocity = rand.Next(1, 10);
                 newBall.verVelocity = rand.Next(1, 10);
@@ -68,6 +68,7 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
                 ball.Top += ball.verVelocity;
             }
             BallBorderCollision();
+            BallCollision();
         }
 
         private void BallBorderCollision()
@@ -84,6 +85,26 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
                 }
             }           
           
+        }
+
+        private void BallCollision()
+        {
+            foreach(var ball in allBalls)
+            {
+                foreach(var otherBall in allBalls)
+                {
+                    if(ball != otherBall)
+                    {
+                        if (ball.Bounds.IntersectsWith(otherBall.Bounds))
+                        {
+                            ball.BackColor = Color.Red;
+                            otherBall.BackColor = Color.Red;
+                            SpawnBalls(1);
+                            return;
+                        }
+                    }
+                }
+            }
         }
 
     }

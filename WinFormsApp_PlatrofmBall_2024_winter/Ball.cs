@@ -13,8 +13,8 @@ namespace WinFormsApp_PlatrofmBall_2024_winter
 
         public Ball()
         {
-            this.Width = 20;
-            this.Height = 20;
+            this.Width = 10;
+            this.Height = 10;
             this.BackColor = Color.White;
         }
     }

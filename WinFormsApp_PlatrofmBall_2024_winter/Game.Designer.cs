@@ -28,33 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Ball = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.Ball)).BeginInit();
             this.SuspendLayout();
             // 
-            // Ball
-            // 
-            this.Ball.Location = new System.Drawing.Point(83, 37);
-            this.Ball.Name = "Ball";
-            this.Ball.Size = new System.Drawing.Size(100, 94);
-            this.Ball.TabIndex = 0;
-            this.Ball.TabStop = false;
-            // 
-            // Form1
+            // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.Ball);
-            this.Name = "Form1";
+            this.Name = "Game";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.Ball)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private PictureBox Ball;
     }
 }
